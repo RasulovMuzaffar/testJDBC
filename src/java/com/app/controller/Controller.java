@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Controller", urlPatterns = {"/Controller"})
 public class Controller extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class Controller extends HttpServlet {
         request.setAttribute("list", table2);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,43 +49,18 @@ public class Controller extends HttpServlet {
         } catch (Exception e) {
             System.out.println("problema " + e);
         }
-        
+
         Connection conn = null;
         PreparedStatement ps = null;
         if (flag.equals("add")) {
-            
-            try {
-                conn = new ConnDB().getConn();
-                String sql = "insert into table2 (text, int_) values (?, ?)";
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, text);
-                ps.setInt(2, int_);
-                ps.executeUpdate();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }
-            
             Table2Model model = new Table2Model();
+            model.insertToTable2(text, int_);
             List table2 = model.getTable2FromDB();
             request.setAttribute("list", table2);
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (flag.equals("upd")) {
-            
+        } else if (flag.equals("del")) {
+
         }
-    }    
-    
+    }
+
 }

@@ -22,12 +22,15 @@ import java.util.logging.Logger;
  */
 public class Table2Model {
 
+    Connection conn = null;
+    PreparedStatement ps = null;
+
     public List getTable2FromDB() {
-        PreparedStatement ps = null;
+//        PreparedStatement ps = null;
         ResultSet rs = null;
         Table2Info m = null;
         List listM = new ArrayList();
-        Connection conn = null;
+//        Connection conn = null;
 
         String sql = "select id, text, int_ from table2";
         ConnDB connDB = new ConnDB();
@@ -60,6 +63,30 @@ public class Table2Model {
             connDB.closeConn(conn);
         }
         return listM;
+    }
 
+    public void insertToTable2(String s, int i) {
+        try {
+            conn = new ConnDB().getConn();
+            String sql = "insert into table2 (text, int_) values (?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, s);
+            ps.setInt(2, i);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
 }
