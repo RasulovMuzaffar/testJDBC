@@ -1,0 +1,15 @@
+.invisible-at-first{
+    display: none;
+}
+
+.b{
+    float: right;
+}
+
+thead{
+    text-align: center;
+    font-weight: bold ;
+}
+.ssyl{
+    text-align: center;
+}
