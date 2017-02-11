@@ -50,8 +50,6 @@ public class Controller extends HttpServlet {
             System.out.println("problema " + e);
         }
 
-        Connection conn = null;
-        PreparedStatement ps = null;
         if (flag.equals("add")) {
             Table2Model model = new Table2Model();
             model.insertToTable2(text, int_);
