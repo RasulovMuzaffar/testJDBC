@@ -21,7 +21,6 @@
         <link href="static/css/style.css" rel="stylesheet">
         
         
-        <script src="static/js/delete.js"></script>
 
 
         <!--[if it IE9]>
@@ -52,7 +51,6 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td>ID</td>
                             <td>TEXT</td>
                             <td>INT_</td>
                             <td>edit</td>
@@ -62,11 +60,10 @@
                     <tbody>
                         <c:forEach items="${requestScope.list}" var="l">
                             <tr>
-                                <td>${l.id}</td>
                                 <td>${l.text}</td>
                                 <td>${l.int_}</td>
-                                <td class="ssyl"><a href="Controller?id=${l.id}&flag=upd"><span class="glyphicon glyphicon-pencil" ></span> </a> </td>
-                                <td class="ssyl"><a href="#" onclick="delete(${l.id})"><span class="glyphicon glyphicon-trash"></span> </a> </td>
+                                <td class="ssyl"><a href="Controller?id=${l.id}&flag=upd" class="glyphicon glyphicon-pencil"></a> </td>
+                                <td class="ssyl"><a href="Controller" value="${l.id}" class="ahref"><span class="glyphicon glyphicon-trash"></span> </a> </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -80,5 +77,6 @@
         <script src="static/js/jquery-3.1.1.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
 
+        <script src="static/js/delete.js"></script>
     </body>
 </html>
