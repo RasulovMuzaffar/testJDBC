@@ -19,6 +19,9 @@
 
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
         <link href="static/css/style.css" rel="stylesheet">
+        
+        
+        <script src="static/js/delete.js"></script>
 
 
         <!--[if it IE9]>
@@ -63,7 +66,7 @@
                                 <td>${l.text}</td>
                                 <td>${l.int_}</td>
                                 <td class="ssyl"><a href="Controller?id=${l.id}&flag=upd"><span class="glyphicon glyphicon-pencil" ></span> </a> </td>
-                                <td class="ssyl"><a href="Controller?id=${l.id}&flag=del"><span class="glyphicon glyphicon-trash"></span> </a> </td>
+                                <td class="ssyl"><a href="#" onclick="delete(${l.id})"><span class="glyphicon glyphicon-trash"></span> </a> </td>
                             </tr>
                         </c:forEach>
                     </tbody>

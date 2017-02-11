@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ public class Table2Model {
 
     Connection conn = null;
     PreparedStatement ps = null;
+    Statement st = null;
 
     public List getTable2FromDB() {
 //        PreparedStatement ps = null;
@@ -88,5 +90,31 @@ public class Table2Model {
             }
 
         }
+    }
+
+    public void delRow(int id) {
+        System.out.println("--------- " + id);
+        try {
+            conn = new ConnDB().getConn();
+            String sql = "delete from table2 where id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }
 }

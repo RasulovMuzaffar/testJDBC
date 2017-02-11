@@ -40,24 +40,31 @@ public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String flag = null;
+        int id = 0;
         String text = null;
         int int_ = 0;
         try {
             flag = request.getParameter("flag");
-            text = request.getParameter("text");
+            id = Integer.parseInt(request.getParameter("id"));
+            text = request.getParameter("text");            
             int_ = Integer.parseInt(request.getParameter("int_"));
         } catch (Exception e) {
             System.out.println("problema " + e);
         }
-
+        System.out.println("--------------flag-------- " + flag);
         if (flag.equals("add")) {
             Table2Model model = new Table2Model();
             model.insertToTable2(text, int_);
             List table2 = model.getTable2FromDB();
             request.setAttribute("list", table2);
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (flag.equals("del")) {
-
+        } 
+        else if (flag.equals("del")) {
+            Table2Model model = new Table2Model();
+            model.delRow(id);
+            List table2 = model.getTable2FromDB();
+            request.setAttribute("list", table2);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
