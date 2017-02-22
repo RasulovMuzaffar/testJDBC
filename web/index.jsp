@@ -41,7 +41,7 @@
                     <input type="text" name="text" class="col-md-3" required="required"/>
                     <label class="col-md-1 text-right">INT_</label>
                     <input type="text" name="int_" class="col-md-3" required="required"/>
-                    <input type="submit" class="b btn btn-primary col-md-3" value="Add"/>
+                    <input type="submit" class="btn btn-primary col-md-3" value="Add"/>
                 </div>
                 <div class="form-group">
                     <!--<input type="submit" class="b btn btn-primary col-md-12" value="Add"/>-->
